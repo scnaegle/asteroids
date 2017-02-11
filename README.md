@@ -22,4 +22,7 @@ gradle idea
 Then select "Open Project" in Intellij and select the directory.
 Intellij may ask to import the gradle project: don't bother.
 
+#Directory Layout
+The directories follow the Apache standard.  
+See: https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
 
