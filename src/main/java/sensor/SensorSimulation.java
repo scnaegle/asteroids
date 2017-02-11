@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Sean on 2/4/17.
@@ -64,17 +65,30 @@ public class SensorSimulation implements SensorInterface {
 
   @Override
   public void on() {
-
+    this.status = true;
+    try {
+      TimeUnit.SECONDS.sleep(6);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void off() {
-
+    // We will loose our 1 buffered image if we shut off the camera.
+    this.image = null;
+    this.status = false;
+    try {
+      TimeUnit.SECONDS.sleep(4);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void reset() {
-
+    off();
+    on();
   }
 
   public void setElapsedSeconds(int elapsed_seconds) {
@@ -124,6 +138,8 @@ public class SensorSimulation implements SensorInterface {
       generateRandomAsteroids();
     }
 
+    generateNoise(image);
+
     // Move all asteroids and draw them on the imageView
     for (Asteroid asteroid : asteroids) {
       asteroid.move(time);
@@ -133,7 +149,6 @@ public class SensorSimulation implements SensorInterface {
 
     // Remove all asteroids that will never show up again
     removeOffWindowAsteroids();
-    generateNoise(image);
 
     return new Picture(image);
   }
