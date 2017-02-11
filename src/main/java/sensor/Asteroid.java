@@ -1,10 +1,9 @@
+package sensor;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -94,9 +93,10 @@ public class Asteroid {
   private void setRandomImage() {
     Random rand = new Random();
     String asteroid_image = asteroid_images[rand.nextInt(asteroid_images.length)];
-    System.out.format("setting image to: %s\n", asteroid_image);
+    System.out.format("setting imageView to: %s\n", asteroid_image);
     try {
-      this.image = ImageIO.read(new File("asteroids/" + asteroid_image));
+
+      this.image = ImageIO.read(Asteroid.class.getResource("asteroids/" + asteroid_image));
     } catch (IOException e) {
     }
   }
