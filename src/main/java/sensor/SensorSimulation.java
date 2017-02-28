@@ -12,7 +12,7 @@ public class SensorSimulation implements SensorInterface {
 
   private Picture image;
   private ImageGenerator image_generator;
-  private int elapsed_seconds = -30;
+  private int elapsed_seconds = 0 - TIME_STEP;
 
   private Boolean camera_ready = false;
 
