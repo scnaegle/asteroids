@@ -2,13 +2,11 @@ package demo;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,7 +17,6 @@ import sensor.SensorInterface;
 import sensor.SensorSimulation;
 import sensor.ZoomLevel;
 
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -135,7 +132,7 @@ public class DemoGUIController implements Initializable {
       previousCaptureStatus = status;
 
       if(loadimage){
-          BufferedImage chunk = sensor.getImageChunk(i * 200 + 100, j *200 + 100, 200);
+          BufferedImage chunk = sensor.getFrame(i * 200 + 100, j * 200 + 100, 200);
           if (chunk != null) {
               Graphics2D g = buildable_image.createGraphics();
               g.drawImage(chunk, i * 200, j * 200, 200, 200, null);
